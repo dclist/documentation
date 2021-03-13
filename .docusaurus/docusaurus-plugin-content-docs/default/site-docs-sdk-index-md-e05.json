@@ -1,0 +1,12 @@
+{
+  "unversionedId": "sdk/index",
+  "id": "sdk/index",
+  "isDocsHomePage": false,
+  "title": "index",
+  "description": "",
+  "source": "@site/docs/sdk/index.md",
+  "slug": "/sdk/index",
+  "permalink": "/sdk/index",
+  "editUrl": "https://github.com/dclist/docs/edit/master/docs/docs/sdk/index.md",
+  "version": "current"
+}

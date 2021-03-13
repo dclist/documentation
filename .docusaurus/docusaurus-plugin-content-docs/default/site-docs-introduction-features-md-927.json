@@ -1,0 +1,21 @@
+{
+  "unversionedId": "introduction/features",
+  "id": "introduction/features",
+  "isDocsHomePage": false,
+  "title": "Features",
+  "description": "Our Features",
+  "source": "@site/docs/introduction/features.md",
+  "slug": "/features",
+  "permalink": "/features",
+  "editUrl": "https://github.com/dclist/docs/edit/master/docs/docs/introduction/features.md",
+  "version": "current",
+  "sidebar": "mainSidebar",
+  "previous": {
+    "title": "Greetings",
+    "permalink": "/"
+  },
+  "next": {
+    "title": "Quick Start Guide",
+    "permalink": "/sdk/node/"
+  }
+}

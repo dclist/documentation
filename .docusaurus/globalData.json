@@ -1,0 +1,42 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/",
+          "mainDocId": "introduction/greetings",
+          "docs": [
+            {
+              "id": "introduction/features",
+              "path": "/features",
+              "sidebar": "mainSidebar"
+            },
+            {
+              "id": "introduction/greetings",
+              "path": "/",
+              "sidebar": "mainSidebar"
+            },
+            {
+              "id": "sdk/node/advanced/fieldSelector",
+              "path": "/sdk/node/advanced/fieldSelector",
+              "sidebar": "mainSidebar"
+            },
+            {
+              "id": "sdk/node/home",
+              "path": "/sdk/node/",
+              "sidebar": "mainSidebar"
+            },
+            {
+              "id": "sdk/sdkHome",
+              "path": "/sdk/"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

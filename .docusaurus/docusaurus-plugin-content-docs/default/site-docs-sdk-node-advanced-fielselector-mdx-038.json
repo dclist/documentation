@@ -1,0 +1,17 @@
+{
+  "unversionedId": "sdk/node/advanced/fieldSelector",
+  "id": "sdk/node/advanced/fieldSelector",
+  "isDocsHomePage": false,
+  "title": "Field Selectors",
+  "description": "Concept of Field Selectors {concept}",
+  "source": "@site/docs/sdk/node/advanced/fielselector.mdx",
+  "slug": "/sdk/node/advanced/fieldSelector",
+  "permalink": "/sdk/node/advanced/fieldSelector",
+  "editUrl": "https://github.com/dclist/docs/edit/master/docs/docs/sdk/node/advanced/fielselector.mdx",
+  "version": "current",
+  "sidebar": "mainSidebar",
+  "previous": {
+    "title": "Quick Start Guide",
+    "permalink": "/sdk/node/"
+  }
+}
