@@ -3,6 +3,7 @@ id: home
 slug: /sdk/node/
 title: Quick Start Guide
 ---
+
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -39,9 +40,15 @@ Simply you can create GatewayClient using your bot's dclist token.
 
 :::info DCList Token You can obtain or regenerate your bot's dclist token in your bot's settings page under "**Api Settings**". :::
 
-<Tabs groupId="programming-language" defaultValue="ts" values={[
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
 { label: 'Typescript', value: 'ts' },
-{ 'JavaScript', 'js' }, ]} >
+{ label: 'JavaScript', value: 'js' },
+]}
+>
 <TabItem value="ts">
 
 ```ts
@@ -65,9 +72,8 @@ token: 'YOUR_DCLIST_TOKEN_HERE'
 
 </TabItem>
 </Tabs>
-
+````
 ### Interacting with API {#interacting-with-api}
-
 You can easily interact with our graphql api using GatewayClient. Here is a simple example :
 
 ```ts
@@ -85,9 +91,15 @@ dclClient.isUserVoted('690214077490004030')
 
 You can also subscribe to events like new votes via GatewayClient. You don't have to set up a server to just receive new votes. It would be a waste of resource. Insted of you can simply call #subscribeTo function to listen for new event. Smart, isn't it.
 
-<Tabs groupId="programming-language" defaultValue="ts" values={[
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
 { label: 'Typescript', value: 'ts' },
-{ 'JavaScript', 'js' }, ]} >
+{ label: 'JavaScript', value: 'js' },
+]}
+>
 <TabItem value="ts">
 
 ```ts
@@ -115,3 +127,4 @@ dclClient.on('SDK_NEW_VOTE', (voteObj) => {
 
 </TabItem>
 </Tabs>
+````
