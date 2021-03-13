@@ -3,9 +3,10 @@ id: home
 slug: /sdk/node/
 title: Quick Start Guide
 ---
-
+````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+````
 
 ## Installation {#installation}
 
@@ -28,7 +29,7 @@ yarn add @dclist/sdk
 
 **We support typescript natively. You don't need to install any other packages.**
 
-If you want to learn more about sdk. You can take a look at our [Advanced Guides](sdk/node/advanced)
+If you want to learn more about sdk. You can take a look at our Advanced Guides
 
 ### Creating Client {#creating-client}
 
@@ -36,9 +37,11 @@ Gateway client is the ultimate client for using dclist's api. You can do tons of
 
 Simply you can create GatewayClient using your bot's dclist token.
 
-:::info DCList Token You can obtain or regenerate your bot's dclist token in your bot's settings page under "**Api Settings**". :::<Tabs groupId="programming-language" defaultValue="ts" values={[
+:::info DCList Token You can obtain or regenerate your bot's dclist token in your bot's settings page under "**Api Settings**". :::
+
+<Tabs groupId="programming-language" defaultValue="ts" values={[
 { label: 'Typescript', value: 'ts' },
-{ 'JavaScript', 'js' }, ]} mark =crwd-mark>
+{ 'JavaScript', 'js' }, ]} >
 <TabItem value="ts">
 
 ```ts
@@ -80,9 +83,11 @@ dclClient.isUserVoted('690214077490004030')
 
 ### Subscribing to Events
 
-You can also subscribe to events like new votes via GatewayClient. You don't have to set up a server to just receive new votes. It would be a waste of resource. Insted of you can simply call #subscribeTo function to listen for new event. Smart, isn't it.<Tabs groupId="programming-language" defaultValue="ts" values={[
+You can also subscribe to events like new votes via GatewayClient. You don't have to set up a server to just receive new votes. It would be a waste of resource. Insted of you can simply call #subscribeTo function to listen for new event. Smart, isn't it.
+
+<Tabs groupId="programming-language" defaultValue="ts" values={[
 { label: 'Typescript', value: 'ts' },
-{ 'JavaScript', 'js' }, ]} mark =crwd-mark>
+{ 'JavaScript', 'js' }, ]} >
 <TabItem value="ts">
 
 ```ts

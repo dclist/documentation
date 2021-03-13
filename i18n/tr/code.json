@@ -31,58 +31,6 @@
     "message": "One min read|{readingTime} min read",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
-  "theme.common.month.january": {
-    "message": "January",
-    "description": "January month translation"
-  },
-  "theme.common.month.february": {
-    "message": "February",
-    "description": "February month translation"
-  },
-  "theme.common.month.march": {
-    "message": "March",
-    "description": "March month translation"
-  },
-  "theme.common.month.april": {
-    "message": "April",
-    "description": "April month translation"
-  },
-  "theme.common.month.may": {
-    "message": "May",
-    "description": "May month translation"
-  },
-  "theme.common.month.june": {
-    "message": "June",
-    "description": "June month translation"
-  },
-  "theme.common.month.july": {
-    "message": "July",
-    "description": "July month translation"
-  },
-  "theme.common.month.august": {
-    "message": "August",
-    "description": "August month translation"
-  },
-  "theme.common.month.september": {
-    "message": "September",
-    "description": "September month translation"
-  },
-  "theme.common.month.october": {
-    "message": "October",
-    "description": "October month translation"
-  },
-  "theme.common.month.november": {
-    "message": "November",
-    "description": "November month translation"
-  },
-  "theme.common.month.december": {
-    "message": "December",
-    "description": "December month translation"
-  },
-  "theme.blog.post.date": {
-    "message": "{month} {day}, {year}",
-    "description": "The label to display the blog post date"
-  },
   "theme.tags.tagsListLabel": {
     "message": "Tags:",
     "description": "The label alongside a tag list"

@@ -3,8 +3,10 @@ id: home
 slug: /sdk/node/
 title: Quick Start Guide
 ---
+````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+````
 
 ## Installation {#installation}
 
@@ -39,6 +41,7 @@ Simply you can create GatewayClient using your bot's dclist token.
 You can obtain or regenerate your bot's dclist token in your bot's settings page under "**Api Settings**".
 :::
 
+````mdx-code-block
 <Tabs
 groupId="programming-language"
 defaultValue="ts"
@@ -70,6 +73,7 @@ token: 'YOUR_DCLIST_TOKEN_HERE'
 
 </TabItem>
 </Tabs>
+````
 
 ### Interacting with API {#interacting-with-api}
 
@@ -90,6 +94,7 @@ dclClient.isUserVoted('690214077490004030')
 
 You can also subscribe to events like new votes via GatewayClient. You don't have to set up a server to just receive new votes. It would be a waste of resource. Insted of you can simply call #subscribeTo function to listen for new event. Smart, isn't it.
 
+````mdx-code-block
 <Tabs
 groupId="programming-language"
 defaultValue="ts"
@@ -125,3 +130,4 @@ dclClient.on('SDK_NEW_VOTE', (voteObj) => {
 
 </TabItem>
 </Tabs>
+````
