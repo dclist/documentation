@@ -1,0 +1,12 @@
+{
+  "unversionedId": "sdk/sdkHome",
+  "id": "sdk/sdkHome",
+  "isDocsHomePage": false,
+  "title": "SDKs",
+  "description": "SDKS",
+  "source": "@site/docs/sdk/home.md",
+  "slug": "/sdk/",
+  "permalink": "/sdk/",
+  "editUrl": "https://github.com/dclist/docs/edit/master/docs/docs/sdk/home.md",
+  "version": "current"
+}

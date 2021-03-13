@@ -1,0 +1,127 @@
+---
+id: home
+slug: /sdk/node/
+title: Quick Start Guide
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Installation {#installation}
+
+You can easily install and start using dclist.net nodejs sdk. Sdk is available on [npm](https://www.npmjs.com/) and [yarn](https://classic.yarnpkg.com).
+
+You copy-paste following commands to install :
+
+
+```bash
+npm i --save @dclist/sdk
+```
+
+OR
+
+```bash
+yarn add @dclist/sdk
+```
+
+## Start Coding {#start-coding}
+
+**We support typescript natively. You don't need to install any other packages.**
+
+If you want to learn more about sdk. You can take a look at our [Advanced Guides](sdk/node/advanced)
+
+### Creating Client {#creating-client}
+
+Gateway client is the ultimate client for using dclist's api. You can do tons of things with it. We are going to learn more about it later.
+
+Simply you can create GatewayClient using your bot's dclist token.
+
+:::info DCList Token
+You can obtain or regenerate your bot's dclist token in your bot's settings page under "**Api Settings**".
+:::
+
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'Typescript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { GatewayClient } from '@dclist/sdk'
+
+const dclClient = new GatewayClient({
+token: 'YOUR_DCLIST_TOKEN_HERE'
+})
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { GatewayClient } = require('@dclist/sdk')
+
+const dclClient = new GatewayClient({
+token: 'YOUR_DCLIST_TOKEN_HERE'
+})
+```
+
+</TabItem>
+</Tabs>
+
+### Interacting with API {#interacting-with-api}
+
+You can easily interact with our graphql api using GatewayClient. Here is a simple example :
+
+```ts
+// To get bot by discord id
+dclClient.getBotById('690214077490004030')
+
+// To get user by discord id
+dclClient.getUserById('690214077490004030')
+
+// To check is user voted recently
+dclClient.isUserVoted('690214077490004030')
+```
+
+### Subscribing to Events
+
+You can also subscribe to events like new votes via GatewayClient. You don't have to set up a server to just receive new votes. It would be a waste of resource. Insted of you can simply call #subscribeTo function to listen for new event. Smart, isn't it.
+
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'Typescript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { SubscriptionsTopicsEnum } from '@dclist/sdk'
+
+dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
+
+dclClient.on(SubscriptionsTopicsEnum.NEW_VOTE, (voteObj) => {
+/* Do something with voteObj */
+/* For example, send message to log channel  */
+})
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+dclClient.subscribeTo(['SDK_NEW_VOTE'])
+
+dclClient.on('SDK_NEW_VOTE', (voteObj) => {
+/* Do something with voteObj */
+/* For example, send message to log channel  */
+})
+```
+
+</TabItem>
+</Tabs>

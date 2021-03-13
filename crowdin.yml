@@ -3,13 +3,13 @@ api_token: '44ae787651b6148a65c6fbb0ef3943ba1e17841eb0f227557246ae56f23bdc5b25b6
 preserve_hierarchy: true
 files: [
   # JSON translation files
-  {
-    source: '/i18n/en/**/*',
-    translation: '/i18n/%two_letters_code%/**/%original_file_name%',
-  },
+    {
+        source: '/i18n/en/**/*',
+        translation: '/i18n/%two_letters_code%/**/%original_file_name%',
+    },
   # Docs Markdown files
-  {
-    source: '/i18n/en/docusaurus-plugin-content-docs/current/**/*',
-    translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
-  },
+    {
+        source: '/docs/**/*',
+        translation: '/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%',
+    }
 ]
