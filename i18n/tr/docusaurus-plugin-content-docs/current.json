@@ -18,5 +18,9 @@
   "sidebar.mainSidebar.category.Advanced Guides": {
     "message": "Advanced Guides",
     "description": "The label for category Advanced Guides in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category API in sidebar mainSidebar"
   }
 }
