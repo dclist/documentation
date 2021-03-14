@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "private": true,
   "scripts": {
-    "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download",
+    "crowdin": "docusaurus write-translations && crowdin upload",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
