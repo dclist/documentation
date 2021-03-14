@@ -1,0 +1,418 @@
+---
+id: client
+slug: /sdk/node/client/
+title: Gateway Client
+---
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+````
+
+## What is GatewayClient
+
+GatewayClient is the class allows you to interact with dclist's graphql API
+
+## Constructor
+
+Constructor method of GatewayClient accepts an object as first parameter. Properties of accepted object :
+
+| Property |  Type  | Is Optional | Description                 |
+| -------- |:------:|:-----------:| --------------------------- |
+| token    | string |    False    | Token obtained from website |
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { GatewayClient } from '@dclist/sdk'
+
+const dclClient = new GatewayClient({
+    token: 'YOUR_TOKEN_HERE'
+})
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { GatewayClient } = require('@dclist/sdk')
+
+const dclClient = new GatewayClient({
+    token: 'YOUR_TOKEN_HERE'
+})
+```
+
+</TabItem>
+</Tabs>
+````
+## Methods
+### getBotById
+Fetches the bot with given id.
+| Property      |      Type      | Is Optional | Description                                        |
+| ------------- |:--------------:|:-----------:| -------------------------------------------------- |
+| botId         |     string     |    False    | Discord id of the bot                              |
+| fieldSelector | FieldSelector  |    True     | Custom FieldSelector for advanced usage            |
+| Returns       | Promise<Bot\> |             | Returns a promise which will resolve an Bot object |
+#### Fetch bot normally
+
+```js
+const bot = await dclClient.getBotById('690214077490004030')
+console.log(bot)
+// Console Output :
+{
+    id: '690214077490004030',
+    username: 'Techno Bot',
+    discriminator: '1197',
+    avatar: 'ffa1ff0c8616ef03c9a87871a654ae3e',
+    stats: { ... },
+    prefix: 't!',
+    prefixType: 'DYNAMIC',
+    website: 'https://technobot.xyz/',
+    github: null,
+    tags: [ 'turkish', 'game', 'dashboard' ]
+}
+```
+
+#### Fetch bot with custom FieldSelector
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { FieldSelector, Bot } from '@dclist/sdk'
+
+const customFieldSelector = new FieldSelector<Bot>({
+    // Change here with your need
+    id: 1,
+    username: 1,
+    avatar: 1,
+})
+
+const bot = await dclClient.getBotById('690214077490004030', customFieldSelector)
+console.log(bot)
+// Console Output :
+{
+    id: '690214077490004030',
+    username: 'Techno Bot',
+    avatar: 'ffa1ff0c8616ef03c9a87871a654ae3e'
+}
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { FieldSelector } = require('@dclist/sdk')
+
+const customFieldSelector = new FieldSelector({
+    // Change here with your need
+    id: 1,
+    username: 1,
+    avatar: 1,
+})
+
+const bot = await dclClient.getBotById('690214077490004030', customFieldSelector)
+console.log(bot)
+// Console Output :
+{
+    id: '690214077490004030',
+    username: 'Techno Bot',
+    avatar: 'ffa1ff0c8616ef03c9a87871a654ae3e'
+}
+```
+
+</TabItem>
+</Tabs>
+````
+### getUserById
+Fetches the user with given id.
+| Property      |      Type       | Is Optional | Description                                         |
+| ------------- |:---------------:|:-----------:| --------------------------------------------------- |
+| userId        |     string      |    False    | Discord id of the user                              |
+| fieldSelector |  FieldSelector  |    True     | Custom FieldSelector for advanced usage             |
+| Returns       | Promise<User\> |             | Returns a promise which will resolve an User object |
+#### Fetch user normally
+
+```js
+const user = await dclClient.getUserById('685124491466113096')
+console.log(user)
+// Console Output :
+{
+    id: '685124491466113096',
+    username: 'technoeren',
+    discriminator: '7608',
+    avatar: '95d834bd53399f6fe4b9b7fee2dcc38c',
+    website: 'https://technobot.xyz/',
+    github: null
+}
+```
+
+#### Fetch user with custom FieldSelector
+
+````
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { FieldSelector, User } from '@dclist/sdk'
+
+const customFieldSelector = new FieldSelector<User>({
+    // Change here with your need
+    id: 1,
+    username: 1,
+    avatar: 1,
+})
+
+const user = await dclClient.getUserById('685124491466113096', customFieldSelector)
+console.log(user)
+// Console Output :
+{
+    id: '685124491466113096',
+    username: 'technoeren',
+    avatar: '95d834bd53399f6fe4b9b7fee2dcc38c'
+}
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { FieldSelector } = require('@dclist/sdk')
+
+const customFieldSelector = new FieldSelector({
+    // Change here with your need
+    id: 1,
+    username: 1,
+    avatar: 1,
+})
+
+const user = await dclClient.getUserById('685124491466113096', customFieldSelector)
+console.log(user)
+// Console Output :
+    {
+        id: '685124491466113096',
+        username: 'technoeren',
+        avatar: '95d834bd53399f6fe4b9b7fee2dcc38c'
+    }
+```
+
+</TabItem>
+</Tabs>
+````
+### isUserVoted
+Checks if user voted to the bot in last 12 hours.
+| Property |        Type        | Is Optional | Description                                    |
+| -------- |:------------------:|:-----------:| ---------------------------------------------- |
+| userId   |       string       |    False    | Discord id of the user                         |
+| Returns  | Promise<boolean\> |             | Returns a promise which will resolve a boolean |
+
+```js
+const isVoted = await dclClient.getUserById('685124491466113096')
+console.log(isVoted)
+// Console Output :
+true
+```
+
+### getUserComment
+
+Gets the comment posted by user on your bot
+
+<table spaces-before="0">
+  <tr>
+    <th>
+      Property
+    </th>
+    
+    <th align="center">
+      Type
+    </th>
+    
+    <th align="center">
+      Is Optional
+    </th>
+    
+    <th>
+      Description
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+      userId
+    </td>
+    
+    <td align="center">
+      string
+    </td>
+    
+    <td align="center">
+      False
+    </td>
+    
+    <td>
+      Discord id of the user
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      fieldSelector
+    </td>
+    
+    <td align="center">
+      FieldSelector
+    </td>
+    
+    <td align="center">
+      True
+    </td>
+    
+    <td>
+      Custom FieldSelector for advanced usage
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      Returns
+    </td>
+    
+    <td align="center">
+      Promise<Comment\>
+    </td>
+    
+    <td align="center">
+    </td>
+    
+    <td>
+      Returns a promise which will resolve an Comment object
+    </td>
+  </tr>
+</table>
+
+#### Fetch user comment
+
+```js
+const comment = await dclClient.getUserComment('685124491466113096')
+console.log(comment)
+// Console Output :
+{
+    // Bot who posted comment on
+    subject: {
+        id: '690214077490004030',
+        username: 'Techno Bot',
+        discriminator: '1197',
+        avatar: 'ffa1ff0c8616ef03c9a87871a654ae3e',
+    },
+    // User who posted comment
+    author: {
+        id: '685124491466113096',
+        username: 'technoeren',
+        discriminator: '7608',
+        avatar: 'a0cca1132a472eae99373585c8a784c1'
+    },
+    type: 'PARENT',
+    like: 666,
+    content: '...'
+}
+```
+
+#### Fetch user comment with custom FieldSelector
+
+````
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts
+import { FieldSelector, Comment } from '@dclist/sdk'
+
+const customFieldSelector = new FieldSelector<Comment>({
+    // Change here with your need
+    author: {
+        id: 1,
+        username: 1,
+        avatar: 1,
+    },
+    like: 1,
+    content: 1,
+})
+
+const comment = await dclClient.getUserComment('685124491466113096', customFieldSelector)
+console.log(comment)
+// Console Output :
+{
+    author: {
+        id: '685124491466113096',
+        username: 'technoeren',
+        avatar: 'a0cca1132a472eae99373585c8a784c1'
+    },
+    like: 666,
+    content: '...'
+}
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { FieldSelector } = require('@dclist/sdk')
+
+const customFieldSelector = new FieldSelector({
+    // Change here with your need
+    author: {
+        id: 1,
+        username: 1,
+        avatar: 1,
+    },
+    like: 1,
+    content: 1,
+})
+
+const comment = await dclClient.getUserComment('685124491466113096', customFieldSelector)
+console.log(comment)
+// Console Output :
+{
+    author: {
+        id: '685124491466113096',
+        username: 'technoeren',
+        avatar: 'a0cca1132a472eae99373585c8a784c1'
+    },
+    like: 666,
+    content: '...'
+}
+```
+
+</TabItem>
+</Tabs>
+````
