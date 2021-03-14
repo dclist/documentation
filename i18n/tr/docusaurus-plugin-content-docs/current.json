@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.mainSidebar.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.SDKs": {
+    "message": "SDKs",
+    "description": "The label for category SDKs in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Node SDK": {
+    "message": "Node SDK",
+    "description": "The label for category Node SDK in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Advanced Guides": {
+    "message": "Advanced Guides",
+    "description": "The label for category Advanced Guides in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category API in sidebar mainSidebar"
+  }
+}
