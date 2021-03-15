@@ -6,8 +6,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'dclist', // Usually your GitHub org/user name.
-  projectName: 'documentation', // Usually your repo name.
+  organizationName: 'dclist',
+  projectName: 'documentation',
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'tr'],
@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   themeConfig: {
+    defaultMode: 'dark',
     navbar: {
       title: 'DCList',
       logo: {

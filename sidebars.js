@@ -6,7 +6,7 @@ module.exports = {
                 'Node SDK': [
                     'sdk/node/home',
                     {
-                        API: ['sdk/node/client']
+                        API: ['sdk/node/api/client']
                     },
                     // {
                     //     'Advanced Guides': ['sdk/node/advanced/fieldSelector'],
