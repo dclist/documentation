@@ -9,11 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ````
 
-## What is GatewayClient
+## What is GatewayClient {#what-is-gatewayclient}
 
 GatewayClient is the class allows you to interact with dclist's graphql API
 
-## Constructor
+## Constructor {#constructor}
 
 Constructor method of GatewayClient accepts an object as first parameter. Properties of accepted object :
 
@@ -54,15 +54,15 @@ const dclClient = new GatewayClient({
 </TabItem>
 </Tabs>
 ````
-## Methods
-### getBotById
+## Methods {#methods}
+### getBotById {#getbotbyid}
 Fetches the bot with given id.
 | Property      |      Type      | Is Optional | Description                                        |
 | ------------- |:--------------:|:-----------:| -------------------------------------------------- |
 | botId         |     string     |    False    | Discord id of the bot                              |
 | fieldSelector | FieldSelector  |    True     | Custom FieldSelector for advanced usage            |
 | Returns       | Promise<Bot\> |             | Returns a promise which will resolve an Bot object |
-#### Fetch bot normally
+#### Fetch bot normally {#fetch-bot-normally}
 
 ```js
 const bot = await dclClient.getBotById('690214077490004030')
@@ -82,7 +82,7 @@ console.log(bot)
 }
 ```
 
-#### Fetch bot with custom FieldSelector
+#### Fetch bot with custom FieldSelector {#fetch-bot-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs
@@ -141,14 +141,14 @@ console.log(bot)
 </TabItem>
 </Tabs>
 ````
-### getUserById
+### getUserById {#getuserbyid}
 Fetches the user with given id.
 | Property      |      Type       | Is Optional | Description                                         |
 | ------------- |:---------------:|:-----------:| --------------------------------------------------- |
 | userId        |     string      |    False    | Discord id of the user                              |
 | fieldSelector |  FieldSelector  |    True     | Custom FieldSelector for advanced usage             |
 | Returns       | Promise<User\> |             | Returns a promise which will resolve an User object |
-#### Fetch user normally
+#### Fetch user normally {#fetch-user-normally}
 
 ```js
 const user = await dclClient.getUserById('685124491466113096')
@@ -164,7 +164,7 @@ console.log(user)
 }
 ```
 
-#### Fetch user with custom FieldSelector
+#### Fetch user with custom FieldSelector {#fetch-user-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs
@@ -223,7 +223,7 @@ console.log(user)
 </TabItem>
 </Tabs>
 ````
-### isUserVoted
+### isUserVoted {#isuservoted}
 Checks if user voted to the bot in last 12 hours.
 | Property |        Type        | Is Optional | Description                                    |
 | -------- |:------------------:|:-----------:| ---------------------------------------------- |
@@ -237,7 +237,7 @@ console.log(isVoted)
 true
 ```
 
-### getUserComment
+### getUserComment {#getusercomment}
 
 Gets the comment posted by user on your bot
 
@@ -314,7 +314,7 @@ Gets the comment posted by user on your bot
   </tr>
 </table>
 
-#### Fetch user comment
+#### Fetch user comment {#fetch-user-comment}
 
 ```js
 const comment = await dclClient.getUserComment('685124491466113096')
@@ -341,7 +341,7 @@ console.log(comment)
 }
 ```
 
-#### Fetch user comment with custom FieldSelector
+#### Fetch user comment with custom FieldSelector {#fetch-user-comment-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs

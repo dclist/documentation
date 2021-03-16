@@ -4,7 +4,7 @@ title: Features
 slug: /features
 ---
 
-## Our Features
+## Our Features {#our-features}
 
 DCList.net comes with a lot of great features. There is a list of features included in DCList :
 
@@ -14,21 +14,21 @@ DCList.net comes with a lot of great features. There is a list of features inclu
 - [Easy Verification Process](#easy-verification-process)
 - [Highly Customizable Notifications](#customizable-notifications)
 
-### User Interface
+### User Interface {#user-interface}
 
 As DCList.net we're trying to keep our UI as simple and easy to understand as possible. We have 99% responsible UI and works ideal with all devices, But we are far away from perfect. If you have seen any bugs or have any idea about our site come over to our [Discord Server](https://discord.gg/e3dQep6gs8) and give us feedback.
 
-### Multi Language Support
+### Multi Language Support {#multi-language-support}
 
 Currently, we support two languages; English and Turkish. If you want to help us to reach a larger community, you can contact with us. We would appreciate any kind of help.
 
-### Charts and Analytics
+### Charts and Analytics {#charts-and-analytics}
 
 We have two public charts for bot analytics, view and vote count. Those charts are visible by any user. Besides, we have bunch of private charts and analytics for bot owners.
 
 Also, you can access public charts in png, svg and json format through our chart api. There is a detailed explanation how to use it on here [Chart API](https://google.com).
 
-### Easy Verification Process
+### Easy Verification Process {#easy-verification-process}
 
 It's super easy to add new bot in DCList. All you have to do is fill required fields and submit. Generally, bot verification requests results within 24 hours.
 
@@ -41,7 +41,7 @@ After fixing the issue with your bot, you can re-submit for verification request
 :::caution If your bot get rejected, you have one week to make it approved. After one week, your bot's data will be suspended. :::
 
 
-### Customizable Notifications
+### Customizable Notifications {#customizable-notifications}
 
 DCList.net has in-site notification system. With this system you can customize your notification settings such as which notification categories you want to receive. For example, you can get notification when a new comment added to your bot.
 

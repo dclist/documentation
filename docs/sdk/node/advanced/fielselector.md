@@ -29,7 +29,7 @@ const fSelector = new FieldSelector({
 }
 ```
 
-### Using
+### Using {#using}
 
 You can pass custom field selectors pretty much all functions of GatewayClient. Common usage for them is usually when working with bots and users.
 
@@ -37,7 +37,7 @@ You can pass custom field selectors pretty much all functions of GatewayClient. 
 dclClient.getBotById('690214077490004030', fSelector)
 ```
 
-### With Typescript
+### With Typescript {#with-typescript}
 
 Field selectors are highly-typed classes. You can pass generic types to them. It allows you to use auto-compilation features.
 
