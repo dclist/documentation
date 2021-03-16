@@ -23,7 +23,7 @@ module.exports = {
   themeConfig: {
     defaultMode: 'dark',
     prism: {
-      theme: require('prism-react-renderer/themes/dracula'),
+      theme: require('prism-react-renderer/themes/vsDark'),
     },
     navbar: {
       title: 'DCList',

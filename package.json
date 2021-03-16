@@ -3,6 +3,7 @@
   "version": "0.8.0",
   "private": true,
   "scripts": {
+    "crowdin:dry": "docusaurus write-heading-ids && docusaurus write-translations",
     "crowdin:sync": "docusaurus write-heading-ids && docusaurus write-translations && crowdin upload && crowdin download",
     "crowdin:download": "rowdin download",
     "docusaurus": "docusaurus",

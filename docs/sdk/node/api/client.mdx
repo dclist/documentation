@@ -64,7 +64,7 @@ Fetches the bot with given id.
 | --- | :---: | :---: | --- |
 | botId | string | False | Discord id of the bot |
 | fieldSelector | FieldSelector | True | Custom FieldSelector for advanced usage |
-| Returns | Promise<Bot\> || Returns a promise which will resolve an Bot object |
+| Returns | Promise Bot || Returns a promise which will resolve an Bot object |
 
 #### Fetch bot normally {#fetch-bot-normally}
 
@@ -154,7 +154,7 @@ Fetches the user with given id.
 | --- | :---: | :---: | --- |
 | userId | string | False | Discord id of the user |
 | fieldSelector | FieldSelector | True | Custom FieldSelector for advanced usage |
-| Returns | Promise<User\> || Returns a promise which will resolve an User object |
+| Returns | Promise User || Returns a promise which will resolve an User object |
 
 #### Fetch user normally {#fetch-user-normally}
 
@@ -239,7 +239,7 @@ Checks if user voted to the bot in last 12 hours.
 | Property | Type | Is Optional | Description |
 | --- | :---: | :---: | --- |
 | userId | string | False | Discord id of the user |
-| Returns | Promise<boolean\> || Returns a promise which will resolve a boolean |
+| Returns | Promise boolean || Returns a promise which will resolve a boolean |
 
 ```js
 const isVoted = await dclClient.getUserById('685124491466113096')
@@ -256,7 +256,7 @@ Gets the comment posted by user on your bot
 | --- | :---: | :---: | --- |
 | userId | string | False | Discord id of the user |
 | fieldSelector | FieldSelector | True | Custom FieldSelector for advanced usage |
-| Returns | Promise<Comment\> || Returns a promise which will resolve an Comment object |
+| Returns | Promise Comment || Returns a promise which will resolve an Comment object |
 
 #### Fetch user comment {#fetch-user-comment}
 
@@ -369,7 +369,7 @@ Subscribes to given topics. Read more about events in [dedicated guide](#).
 | --- | :---: | :---: | --- |
 | topics | string array | False | List of topics you want to subscribe |
 | fieldSelector | FieldSelector object | True | Custom FieldSelectors for each topics to advanced usage |
-| Returns | string array || List of subscribed topics |
+| Returns | array string || List of subscribed topics |
 
 #### Subscribe to new vote event {#subscribe-to-new-vote-event}
 
