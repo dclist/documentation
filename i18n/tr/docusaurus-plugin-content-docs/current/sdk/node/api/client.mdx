@@ -231,7 +231,7 @@ Kullanıcının son 12 saat içerisinde bota oy verip vermediğini kontrol eder.
 | Dönenler | Promise boolean |              | Boolean döndüren bir Promise döndürür |
 
 ```js
-const isVoted = await dclClient.getUserById('685124491466113096')
+const isVoted = await dclClient.isUserVoted('685124491466113096')
 console.log(isVoted)
 // Konsol Çıktısı :
 true
