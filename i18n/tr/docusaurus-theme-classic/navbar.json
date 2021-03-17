@@ -4,11 +4,11 @@
     "description": "The title in the navbar"
   },
   "item.label.Site Docs": {
-    "message": "Site Docs",
+    "message": "Site Dokümanları",
     "description": "Navbar item with label Site Docs"
   },
   "item.label.GitHub": {
-    "message": "GitHub",
+    "message": "Github",
     "description": "Navbar item with label GitHub"
   }
 }

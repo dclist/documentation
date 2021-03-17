@@ -9,17 +9,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ````
 
-## What is GatewayClient {#what-is-gatewayclient}
+## GatewayClient Nedir {#what-is-gatewayclient}
 
-GatewayClient is the class allows you to interact with dclist's graphql API
+GatewayClient, dclist'in graphql API'si ile etkileşim kurmanızı sağlayan sınıftır
 
 ## Constructor {#constructor}
 
-Constructor method of GatewayClient accepts an object as first parameter. Properties of accepted object :
+GatewayClient'ın constructor metodu birince parametre olarak nesne kabul eder. Kabul edilen nesnenin özellikleri:
 
-| Property |  Type  | Is Optional | Description                 |
-| -------- |:------:|:-----------:| --------------------------- |
-| token    | string |    False    | Token obtained from website |
+| Özellik |  Tipi  | İsteğe Bağlı | Açıklama                    |
+| ------- |:------:|:------------:| --------------------------- |
+| token   | string |    Hayır     | Web sitesinden alınan token |
 
 ````mdx-code-block
 <Tabs
@@ -36,7 +36,7 @@ values={[
 import { GatewayClient } from '@dclist/sdk'
 
 const dclClient = new GatewayClient({
-    token: 'YOUR_TOKEN_HERE'
+    token: 'SENIN_TOKENIN'
 })
 ```
 
@@ -47,27 +47,27 @@ const dclClient = new GatewayClient({
 const { GatewayClient } = require('@dclist/sdk')
 
 const dclClient = new GatewayClient({
-    token: 'YOUR_TOKEN_HERE'
+    token: 'SENIN_TOKENIN'
 })
 ```
 
 </TabItem>
 </Tabs>
 ````
-## Methods {#methods}
+## Metodlar {#methods}
 ### getBotById {#getbotbyid}
-Fetches the bot with given id.
-| Property      |      Type      | Is Optional | Description                                        |
-| ------------- |:--------------:|:-----------:| -------------------------------------------------- |
-| botId         |     string     |    False    | Discord id of the bot                              |
-| fieldSelector | FieldSelector  |    True     | Custom FieldSelector for advanced usage            |
-| Returns       | Promise<Bot\> |             | Returns a promise which will resolve an Bot object |
-#### Fetch bot normally {#fetch-bot-normally}
+Verilen id ile botu çeker.
+| Özellik       |     Tipi      | İsteğe Bağlı | Açıklama                                  |
+| ------------- |:-------------:|:------------:| ----------------------------------------- |
+| botId         |    string     |    Hayır     | Botun Discord id'si                       |
+| fieldSelector | FieldSelector |     Evet     | Gelişmiş kullanım için özel FieldSelector |
+| Dönenler      |  Promise Bot  |              | Bot nesnesi döndüren bir Promise döndürür |
+#### Normal bot çekmek {#fetch-bot-normally}
 
 ```js
 const bot = await dclClient.getBotById('690214077490004030')
 console.log(bot)
-// Console Output :
+// Konsole Çıktısı :
 {
     id: '690214077490004030',
     username: 'Techno Bot',
@@ -82,7 +82,7 @@ console.log(bot)
 }
 ```
 
-#### Fetch bot with custom FieldSelector {#fetch-bot-with-custom-fieldselector}
+#### Özel FieldSelector ile bot çekmek {#fetch-bot-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs
@@ -99,7 +99,7 @@ values={[
 import { FieldSelector, Bot } from '@dclist/sdk'
 
 const customFieldSelector = new FieldSelector<Bot>({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     id: 1,
     username: 1,
     avatar: 1,
@@ -107,7 +107,7 @@ const customFieldSelector = new FieldSelector<Bot>({
 
 const bot = await dclClient.getBotById('690214077490004030', customFieldSelector)
 console.log(bot)
-// Console Output :
+// Konsol Çıktısı  :
 {
     id: '690214077490004030',
     username: 'Techno Bot',
@@ -122,7 +122,7 @@ console.log(bot)
 const { FieldSelector } = require('@dclist/sdk')
 
 const customFieldSelector = new FieldSelector({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     id: 1,
     username: 1,
     avatar: 1,
@@ -130,7 +130,7 @@ const customFieldSelector = new FieldSelector({
 
 const bot = await dclClient.getBotById('690214077490004030', customFieldSelector)
 console.log(bot)
-// Console Output :
+// Konsole Çıktısı :
 {
     id: '690214077490004030',
     username: 'Techno Bot',
@@ -142,18 +142,18 @@ console.log(bot)
 </Tabs>
 ````
 ### getUserById {#getuserbyid}
-Fetches the user with given id.
-| Property      |      Type       | Is Optional | Description                                         |
-| ------------- |:---------------:|:-----------:| --------------------------------------------------- |
-| userId        |     string      |    False    | Discord id of the user                              |
-| fieldSelector |  FieldSelector  |    True     | Custom FieldSelector for advanced usage             |
-| Returns       | Promise<User\> |             | Returns a promise which will resolve an User object |
-#### Fetch user normally {#fetch-user-normally}
+Verilen id ile kullanıcıyı çeker.
+| Özellik       |       Tipi        | İsteğe Bağlı | Açıklama                                        |
+| ------------- |:-----------------:|:------------:| ----------------------------------------------- |
+| userId        |      string       |    Hayır     | Kullanıcının Discord id'si                      |
+| fieldSelector |   FieldSelector   |     Evet     | Gelişmiş kullanım için özel FieldSelector       |
+| Dönenler      | Promise Kullanıcı |              | Kullanıcı nesnesi döndüren bir Promise döndürür |
+#### Normal kullanıcı çekmek {#fetch-user-normally}
 
 ```js
 const user = await dclClient.getUserById('685124491466113096')
 console.log(user)
-// Console Output :
+// Konsol Çıktısı :
 {
     id: '685124491466113096',
     username: 'technoeren',
@@ -164,7 +164,7 @@ console.log(user)
 }
 ```
 
-#### Fetch user with custom FieldSelector {#fetch-user-with-custom-fieldselector}
+#### Özel FieldSelector ile kullanıcı çekmek {#fetch-user-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs
@@ -181,7 +181,7 @@ values={[
 import { FieldSelector, User } from '@dclist/sdk'
 
 const customFieldSelector = new FieldSelector<User>({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     id: 1,
     username: 1,
     avatar: 1,
@@ -189,7 +189,7 @@ const customFieldSelector = new FieldSelector<User>({
 
 const user = await dclClient.getUserById('685124491466113096', customFieldSelector)
 console.log(user)
-// Console Output :
+// Konsol Çıktısı :
 {
     id: '685124491466113096',
     username: 'technoeren',
@@ -204,7 +204,7 @@ console.log(user)
 const { FieldSelector } = require('@dclist/sdk')
 
 const customFieldSelector = new FieldSelector({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     id: 1,
     username: 1,
     avatar: 1,
@@ -212,7 +212,7 @@ const customFieldSelector = new FieldSelector({
 
 const user = await dclClient.getUserById('685124491466113096', customFieldSelector)
 console.log(user)
-// Console Output :
+// Konsol Çıktısı :
     {
         id: '685124491466113096',
         username: 'technoeren',
@@ -224,44 +224,44 @@ console.log(user)
 </Tabs>
 ````
 ### isUserVoted {#isuservoted}
-Checks if user voted to the bot in last 12 hours.
-| Property |        Type        | Is Optional | Description                                    |
-| -------- |:------------------:|:-----------:| ---------------------------------------------- |
-| userId   |       string       |    False    | Discord id of the user                         |
-| Returns  | Promise<boolean\> |             | Returns a promise which will resolve a boolean |
+Kullanıcının son 12 saat içerisinde bota oy verip vermediğini kontrol eder.
+| Özellik  |      Tipi       | İsteğe Bağlı | Açıklama                              |
+| -------- |:---------------:|:------------:| ------------------------------------- |
+| userId   |     string      |    Hayır     | Kullanıcının Discord id'si            |
+| Dönenler | Promise boolean |              | Boolean döndüren bir Promise döndürür |
 
 ```js
 const isVoted = await dclClient.getUserById('685124491466113096')
 console.log(isVoted)
-// Console Output :
+// Konsol Çıktısı :
 true
 ```
 
 ### getUserComment {#getusercomment}
 
-Gets the comment posted by user on your bot
+Kullanıcı tarafından botunuza yapılan yorumu çeker
 
-| Property      |        Type        | Is Optional | Description                                            |
-| ------------- |:------------------:|:-----------:| ------------------------------------------------------ |
-| userId        |       string       |    False    | Discord id of the user                                 |
-| fieldSelector |   FieldSelector    |    True     | Custom FieldSelector for advanced usage                |
-| Returns       | Promise<Comment\> |             | Returns a promise which will resolve an Comment object |
+| Özellik       |     Tipi      | İsteğe Bağlı | Açıklama                                    |
+| ------------- |:-------------:|:------------:| ------------------------------------------- |
+| userId        |    string     |    Hayır     | Kullanıcının Discord id'si                  |
+| fieldSelector | FieldSelector |     Evet     | Gelişmiş kullanım için özel FieldSelector   |
+| Dönenler      | Promise Yorum |              | Yorum nesnesi döndüren bir Promise döndürür |
 
-#### Fetch user comment {#fetch-user-comment}
+#### Kullanıcı yorumunu çekmek {#fetch-user-comment}
 
 ```js
 const comment = await dclClient.getUserComment('685124491466113096')
 console.log(comment)
-// Console Output :
+// Konsol Çıktısı :
 {
-    // Bot who posted comment on
+    // Yorum yapılan bot
     subject: {
         id: '690214077490004030',
         username: 'Techno Bot',
         discriminator: '1197',
         avatar: 'ffa1ff0c8616ef03c9a87871a654ae3e',
     },
-    // User who posted comment
+    // Yorum yapan kullanıcı
     author: {
         id: '685124491466113096',
         username: 'technoeren',
@@ -274,7 +274,7 @@ console.log(comment)
 }
 ```
 
-#### Fetch user comment with custom FieldSelector {#fetch-user-comment-with-custom-fieldselector}
+#### Özel FieldSelector ile kullanıcı yorumu çekmek {#fetch-user-comment-with-custom-fieldselector}
 
 ````mdx-code-block
 <Tabs
@@ -291,7 +291,7 @@ values={[
 import { FieldSelector, Comment } from '@dclist/sdk'
 
 const customFieldSelector = new FieldSelector<Comment>({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     author: {
         id: 1,
         username: 1,
@@ -303,7 +303,7 @@ const customFieldSelector = new FieldSelector<Comment>({
 
 const comment = await dclClient.getUserComment('685124491466113096', customFieldSelector)
 console.log(comment)
-// Console Output :
+// Konsol Çıktısı :
 {
     author: {
         id: '685124491466113096',
@@ -322,7 +322,7 @@ console.log(comment)
 const { FieldSelector } = require('@dclist/sdk')
 
 const customFieldSelector = new FieldSelector({
-    // Change here with your need
+    // Burayı kendinize göre değiştirin
     author: {
         id: 1,
         username: 1,
@@ -334,7 +334,7 @@ const customFieldSelector = new FieldSelector({
 
 const comment = await dclClient.getUserComment('685124491466113096', customFieldSelector)
 console.log(comment)
-// Console Output :
+// Konsol Çıktısı :
 {
     author: {
         id: '685124491466113096',
@@ -350,13 +350,13 @@ console.log(comment)
 </Tabs>
 ````
 ### subscribeTo {#subscribeto}
-Subscribes to given topics. Read more about events in [dedicated guide](#).
-| Property      |         Type         | Is Optional | Description                                             |
-| ------------- |:--------------------:|:-----------:| ------------------------------------------------------- |
-| topics        |     string array     |    False    | List of topics you want to subscribe                    |
-| fieldSelector | FieldSelector object |    True     | Custom FieldSelectors for each topics to advanced usage |
-| Returns       |     string array     |             | List of subscribed topics                               |
-#### Subscribe to new vote event {#subscribe-to-new-vote-event}
+Verilen konulara abone olur. Etkinlikler hakkında daha fazla bilgi için [özel rehber](#).
+| Özellik       |         Tipi         | İsteğe Bağlı | Açıklama                                                 |
+| ------------- |:--------------------:|:------------:| -------------------------------------------------------- |
+| topics        |     string array     |    Hayır     | Abone olmak istediğiniz konuların listesi                |
+| fieldSelector | FieldSelector object |     Evet     | Gelişmiş kullanım için her konu için özel FieldSelectors |
+| Dönenler      |     array string     |              | Abone olunan konuların listesi                           |
+#### Yeni oy etkinliğine abone olmak {#subscribe-to-new-vote-event}
 
 ````mdx-code-block
 <Tabs
@@ -374,7 +374,7 @@ import { SubscriptionsTopicsEnum } from '@dclist/sdk'
 
 const subTopics = await dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
 console.log(subTopics)
-// Console Output :
+// Konsole Çıktısı :
 [ 'SDK_NEW_VOTE' ]
 ```
 
@@ -384,7 +384,7 @@ console.log(subTopics)
 ```js
 const subTopics = await dclClient.subscribeTo(['SDK_NEW_VOTE'])
 console.log(subTopics)
-// Console Output :
+// Konsole Çıktısı :
 [ 'SDK_NEW_VOTE' ]
 ```
 

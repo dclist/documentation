@@ -1,7 +1,7 @@
 ---
 id: common
 slug: /sdk/node/guides/common/
-title: Common Usage Cases
+title: Yaygın Kullanım Alanları
 ---
 
 ````mdx-code-block
@@ -9,55 +9,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ````
 
-## Core Setup Guide {#core-setup-guide}
+## Temel Kurulum {#core-setup-guide}
 
-We are going to learn how to start using library and combine it with currently used code.
+Kütüphaneyi kullanmaya nasıl başlayacağımızı ve şu anda kullandığınız kodla nasıl birleştireceğimizi öğreneceğiz.
 
-We are going to use [discord.js](https://discord.js.org) package.
+Discord client kütüphanesi olarak [discord.js](https://discord.js.org) kullanıcağız.
 
-### Setup {#setup}
+### Kurulum {#setup}
 
-Here is the very simple discord bot setup we're going to use.
-
-````mdx-code-block
-<Tabs
-groupId="programming-language"
-defaultValue="ts"
-values={[
-{ label: 'TypeScript', value: 'ts' },
-{ label: 'JavaScript', value: 'js' },
-]}
->
-<TabItem value="ts">
-
-```ts title="app.ts"
-import { Client } from 'discord.js'
-
-const client = new Client()
-
-client.on('ready', () => console.log("I'm ready sir o7"))
-
-client.login(process.env.DISCORD_TOKEN)
-```
-
-</TabItem>
-<TabItem value="js">
-
-```js title="app.js"
-const { Client } = require('discord.js')
-
-const client = new Client()
-
-client.on('ready', () => console.log("I'm ready sir o7"))
-
-client.login(process.env.DISCORD_TOKEN)
-```
-
-</TabItem>
-</Tabs>
-````
-### Creating Client {#creating-client}
-Now that we have a basic setup we can create our GatewayClient to start interacting with dclist
+Kullanacağımız çok basit bir discord bot kurulumu.
 
 ````mdx-code-block
 <Tabs
@@ -72,19 +32,12 @@ values={[
 
 ```ts title="app.ts"
 import { Client } from 'discord.js'
-// highlight-next-line
-import { GatewayClient } from '@dclist/sdk'
 
 const client = new Client()
-// highlight-start
-const dclClient = new GatewayClient({
-    token: process.env.DCLIST_TOKEN
-})
-// highlight-end
 
-client.on('ready', () => console.log("I'm ready sir o7"))
+client.on('ready', () => console.log("Hazırım o7"))
 
-client.login(process.env.DISCORD_TOKEN)
+client.login('DISCORD_TOKEN')
 ```
 
 </TabItem>
@@ -92,27 +45,19 @@ client.login(process.env.DISCORD_TOKEN)
 
 ```js title="app.js"
 const { Client } = require('discord.js')
-// highlight-next-line
-const { GatewayClient } = require('@dclist/sdk')
 
 const client = new Client()
-// highlight-start
-const dclClient = new GatewayClient({
-    token: process.env.DCLIST_TOKEN
-})
-// highlight-end
 
-client.on('ready', () => console.log("I'm ready sir o7"))
+client.on('ready', () => console.log("Hazırım o7"))
 
-client.login(process.env.DISCORD_TOKEN)
+client.login('DISCORD_TOKEN')
 ```
 
 </TabItem>
 </Tabs>
 ````
-## Voter-Only Commands {#voter-only-commands}
-You may have some voter-only features. You can do that easily using official sdk.
-There is as veeery simple example for using #isUserVoted method of GatewayClient.
+### Client Oluşturma {#creating-client}
+Artık temel bir kuruluma sahip olduğumuza göre, dclist ile etkileşime başlamak için GatewayClient'imizi oluşturabiliriz
 
 ````mdx-code-block
 <Tabs
@@ -131,26 +76,12 @@ import { GatewayClient } from '@dclist/sdk'
 
 const client = new Client()
 const dclClient = new GatewayClient({
-    token: process.env.DCLIST_TOKEN
+    token: 'DCLIST_TOKEN'
 })
 
-client.on('ready', () => console.log("I'm ready sir o7"))
+client.on('ready', () => console.log("Hazırım o7"))
 
-// highlight-start
-client.on('message', async (message) => {
-    if (message.author.bot) return
-    if (message.content.startsWith('!voterOnly')) {
-        const userVoted = await dclClient.isUserVoted(message.author.id)
-        if (!userVoted) {
-            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
-            return
-        }
-    }
-    // Do Some Fancy Stuff Here
-})
-// highlight-end
-
-client.login(process.env.DISCORD_TOKEN)
+client.login('DISCORD_TOKEN')
 ```
 
 </TabItem>
@@ -162,26 +93,254 @@ const { GatewayClient } = require('@dclist/sdk')
 
 const client = new Client()
 const dclClient = new GatewayClient({
-    token: process.env.DCLIST_TOKEN
+    token: 'DCLIST_TOKEN'
 })
 
-client.on('ready', () => console.log("I'm ready sir o7"))
+client.on('ready', () => console.log("Hazırım o7"))
 
-// highlight-start
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+## Oylayan-Özel Komutlar {#voter-only-commands}
+Sadece oyverenlerin kullanabilecekleri komutlara sahip olabilirsiniz. Resmi sdk'i kullanarak bunu kolayca yapabilirsiniz.
+Aşağıdaki GatewayClient'ın #isUserVoted yöntemini kullanmak için çoook basit bir örnek.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("Hazırım o7"))
+
 client.on('message', async (message) => {
     if (message.author.bot) return
     if (message.content.startsWith('!voterOnly')) {
         const userVoted = await dclClient.isUserVoted(message.author.id)
         if (!userVoted) {
-            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
             return
         }
     }
-    // Do Some Fancy Stuff Here
+    // Burda Havalı Şeyler Yapın
 })
-// highlight-end
 
-client.login(process.env.DISCORD_TOKEN)
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("Hazırım o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Burda Havalı Şeyler Yapın
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+## Etkinliklere Abone Olun {#subscribe-to-events}
+Dclist gerçek zamanlı olayları işlemek için biraz farklı bir sistem kullanıyor. Sadece yeni oy etkinliği için express web sunucusu oluşturmak yerine, webspcket kullanarak direk sunucuya bağlanıyor.
+Bu, etkinlikleri kullanmak için başka herhangi bir ayar yapmanıza gerek yok demek.
+Fikir vermesi için çoook basit bir etkinlik kaydedici kodu.
+### Etkinlik Istemek {#demanding-events}
+Öncelikle, hangi etkinliklerden haber almak istediğinizi sunucuya söylemeniz gerekir. Daha sonra sunucu size gerçek zamanlı olarak ektinlikleri göndermeye başlayacaktır.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient, SubscriptionsTopicsEnum } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// Bu metod sync bir metoddur. Async/await kullanmanıza gerek yok
+dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
+
+client.on('ready', () => console.log("Hazırım o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Burda Havalı Şeyler Yapın
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// Bu metod sync bir metoddur. Async/await kullanmanıza gerek yok
+dclClient.subscribeTo(['SDK_NEW_VOTE'])
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Burda Havalı Şeyler Yapın
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+### Etkinlikleri İşlemek {#handling-events}
+Gerçek zamanlı bir etkinlik alındığında, GatewayClient alınan olayın türüyle aynı adlı bir olay yayar.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient, SubscriptionsTopicsEnum } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// Bu metod sync bir metoddur. Async/await kullanmanıza gerek yok
+dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
+
+dclCLient.on(SubscriptionsTopicsEnum.NEW_VOTE, (vote) => {
+    const logChannel = client.channels.cache.get('LOG_CHANNEL_ID') as TextChannel
+    logChannel.send(`Oyun için teşekkurler <@${vote.payload.user.id}> .`)
+})
+
+client.on('ready', () => console.log("Hazırım o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Burda Havalı Şeyler Yapın
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// Bu metod sync bir metoddur. dclClient.subscribeTo(['SDK_NEW_VOTE'])
+
+dclCLient.on('SDK_NEW_VOTE', (vote) => {
+    const logChannel = client.channels.cache.get('LOG_CHANNEL_ID')
+    logChannel.send(`Oyun için teşekkurler <@${vote.payload.user.id}> .`)
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`bu komudu kullanmak için oy vermeniz gerekmektedir. Burdan oy verebilirsiniz : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Burda Havalı Şeyler Yapın
+})
+
+client.login('DISCORD_TOKEN')
 ```
 
 </TabItem>

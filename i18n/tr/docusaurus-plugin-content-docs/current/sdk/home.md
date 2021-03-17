@@ -1,7 +1,7 @@
 ---
 id: sdkHome
 slug: /sdk/
-title: SDKs
+title: SDK'lar
 ---
 
-## SDKS {#sdks}
+## SDK'ler {#sdks}
