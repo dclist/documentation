@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "crowdin:dry": "docusaurus write-heading-ids && docusaurus write-translations",
-    "crowdin:sync": "docusaurus write-heading-ids && docusaurus write-translations && crowdin upload && crowdin download",
+    "crowdin:sync": "docusaurus write-heading-ids && docusaurus write-translations && npx crowdin upload && npx crowdin download",
     "crowdin:download": "crowdin download",
     "crowdin:upload": "crowdin upload",
     "docusaurus": "docusaurus",
@@ -20,11 +20,13 @@
     "@docusaurus/core": "^2.0.0-alpha.72",
     "@docusaurus/plugin-pwa": "^2.0.0-alpha.72",
     "@docusaurus/preset-classic": "^2.0.0-alpha.72",
-    "crowdin-cli": "^0.3.0",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "crowdin-cli": "^0.3.0"
   },
   "browserslist": {
     "production": [
