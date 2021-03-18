@@ -359,3 +359,175 @@ client.login('DISCORD_TOKEN')
 </TabItem>
 </Tabs>
 ````
+
+## AutoPoster Usage
+
+You need to send some report to the site so we can display your bot's guild, user, etc. count and track your growth rate for you.
+
+You can achive that with few lines of change. There is an example for sharded and standalone bots.
+
+### Stand-Alone Bot Setup
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Multi-Sharded Bot Setup
+
+#### Shard Manager File
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="sharder.ts"
+import { ShardingManager } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const shardManager = new ShardingManager(...)
+
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+shardManager.spawn()
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="sharder.js"
+const { ShardingManager } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const shardManager = new ShardingManager(...)
+
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+shardManager.spawn()
+```
+
+</TabItem>
+</Tabs>
+````
+
+#### Shard Client File
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="shard.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // Don't pass client or enablePoster properties
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="shard.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // Don't pass client or enablePoster properties
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````

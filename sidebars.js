@@ -9,9 +9,6 @@ module.exports = {
                         API: ['sdk/node/api/client'],
                         Guides: ['sdk/node/guides/common']
                     },
-                    // {
-                    //     'Advanced Guides': ['sdk/node/advanced/fieldSelector'],
-                    // },
                 ],
             },
         ],
