@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "crowdin:dry": "docusaurus write-heading-ids && docusaurus write-translations",
-    "crowdin:sync": "docusaurus write-heading-ids && docusaurus write-translations && npx crowdin upload && npx crowdin download",
+    "crowdin:sync": "docusaurus write-heading-ids && docusaurus write-translations && npx crowdin-cli upload && npx crowdin-cli download",
     "crowdin:download": "crowdin download",
     "crowdin:upload": "crowdin upload",
     "docusaurus": "docusaurus",
