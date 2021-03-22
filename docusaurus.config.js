@@ -33,9 +33,8 @@ module.exports = {
       },
       items: [
         {
-          to: '/',
-          activeBasePath: 'docs',
-          label: 'Site Docs',
+          href: 'https://dclist.net',
+          label: 'Website',
           position: 'left',
         },
         {
@@ -43,7 +42,7 @@ module.exports = {
           position: 'right',
         },
         {
-          href: 'https://github.com/dclist/docs',
+          href: 'https://github.com/dclist/documentation',
           label: 'GitHub',
           position: 'right',
         },
@@ -56,7 +55,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Site Documentation',
               to: '/',
             }
           ],
@@ -65,16 +64,8 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://discord.com/invite/XEKUMSVBRa',
             },
           ],
         },
@@ -83,7 +74,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/dclist',
             },
           ],
         },
