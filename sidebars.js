@@ -1,6 +1,7 @@
 module.exports = {
     mainSidebar: {
         Introduction: ['introduction/greetings', 'introduction/features'],
+        Guides: ['guides/charts'],
         SDKs: [
             {
                 'Node SDK': [
