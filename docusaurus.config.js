@@ -21,7 +21,9 @@ module.exports = {
     },
   },
   themeConfig: {
-    defaultMode: 'dark',
+    colorMode: {
+      defaultMode: 'dark',
+    },
     prism: {
       theme: require('prism-react-renderer/themes/vsDark'),
     },

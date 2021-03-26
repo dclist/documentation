@@ -4,7 +4,7 @@ slug: /guides/charts/
 title: Chart API
 ---
 
-## What is Charts API
+## What is Charts API {#what-is-charts-api}
 
 As you know, we have charts inside dclist.net. Charts are good for comparing data day by day.
 
@@ -12,32 +12,32 @@ If you haven't seen our charts, they are on any bot's page under "Charts" tab.
 
 The best part about our charts is, you can use them too.
 
-## How to use Charts API
+## How to use Charts API {#how-to-use-charts-api}
 
 Charts API is simply a rest api witch renders and exports charts for you. It also caches them, so you can access them
 much quickly.
 
 The base url for Charts API is : https://charts.dclist.net/
 
-## Bot Charts
+## Bot Charts {#bot-charts}
 
 Bot charts are available under "/bots/$botId/$chartId.$ext" path.
 
 An example bot chart url looks like this : https://charts.dclist.net/bots/690214077490004030/views.svg
 
-### Chart Types
+### Chart Types {#chart-types}
 
 There are two types of public chart you can access via Charts API
 
-#### Bot Views Chart
+#### Bot Views Chart {#bot-views-chart}
 
-![Example Bot Views Chart](https://charts.dclist.net/bots/690214077490004030/views.svg?theme=ligth&?locale=en)
+![Example Bot Views Chart](https://charts.dclist.net/bots/690214077490004030/views.svg?theme=light&?locale=en)
 
-#### Bot Votes Chart
+#### Bot Votes Chart {#bot-votes-chart}
 
-![Example Bot Votes Chart](https://charts.dclist.net/bots/690214077490004030/votes.svg?theme=ligth?locale=en)
+![Example Bot Votes Chart](https://charts.dclist.net/bots/690214077490004030/votes.svg?theme=light?locale=en)
 
-### File Format
+### File Format {#file-format}
 
 Charts API supports 3 type of files :
 
@@ -47,7 +47,7 @@ Charts API supports 3 type of files :
 
 You can control the file type by changing the extension in the url like views.svg, views.json etc.
 
-### Customizing
+### Customizing {#customizing}
 
 You can customize the chart via query strings.
 
@@ -61,7 +61,7 @@ All the query strings are **optional**.
 | theme | dark | Changes the color of texts. dark or light. | [/bots/690214077490004030/views.svg?theme=light](https://charts.dclist.net/bots/690214077490004030/views.svg?theme=light)
 | locale | en | Changes language of the date strings. en or tr. | [/bots/690214077490004030/views.svg?locale=tr](https://charts.dclist.net/bots/690214077490004030/views.svg?locale=tr)
 
-### Bot Aliases
+### Bot Aliases {#bot-aliases}
 
 If it has, you can use bots alias as botId.
 
