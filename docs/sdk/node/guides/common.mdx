@@ -1,0 +1,533 @@
+---
+id: common
+slug: /sdk/node/guides/common/
+title: Common Usage Cases
+---
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+````
+
+## Core Setup Guide {#core-setup-guide}
+
+We are going to learn how to start using library and combine it with currently used code.
+
+We are going to use [discord.js](https://discord.js.org) package.
+
+### Setup {#setup}
+
+Here is the very simple discord bot setup we're going to use.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+
+const client = new Client()
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+
+const client = new Client()
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Creating Client {#creating-client}
+
+Now that we have a basic setup we can create our GatewayClient to start interacting with dclist
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+## Voter-Only Commands {#voter-only-commands}
+
+You may have some voter-only features. You can do that easily using official sdk.
+
+There is as veeery simple example for using #isUserVoted method of GatewayClient.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+## Subscribe to Events {#subscribe-to-events}
+
+Dclist using a bit different system to handle real time events. Instead of creating an express just for new vote event, directly connecting to server using websockets.
+
+That means you don't have to set up any other settings to use events.
+
+Here is a veeery simple vote logger code just to give an idea.
+
+### Demanding Events {#demanding-events}
+
+First you need to tell server about which events you want to receive. Then server will start sending events in real time to you.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient, SubscriptionsTopicsEnum } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// That's a sync method. Don't need to use async/await
+dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// That's a sync method. Don't need to use async/await
+dclClient.subscribeTo(['SDK_NEW_VOTE'])
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Handling Events {#handling-events}
+
+When a real time event received, GatewayClient will emit an event named same as received event's type.
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient, SubscriptionsTopicsEnum } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// That's a sync method. Don't need to use async/await
+dclClient.subscribeTo([SubscriptionsTopicsEnum.NEW_VOTE])
+
+dclCLient.on(SubscriptionsTopicsEnum.NEW_VOTE, (vote) => {
+    const logChannel = client.channels.cache.get('LOG_CHANNEL_ID') as TextChannel
+    logChannel.send(`Thank you <@${vote.payload.user.id}> for your vote`)
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN'
+})
+
+// That's a sync method. Don't need to use async/await
+dclClient.subscribeTo(['SDK_NEW_VOTE'])
+
+dclCLient.on('SDK_NEW_VOTE', (vote) => {
+    const logChannel = client.channels.cache.get('LOG_CHANNEL_ID')
+    logChannel.send(`Thank you <@${vote.payload.user.id}> for your vote`)
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.on('message', async (message) => {
+    if (message.author.bot) return
+    if (message.content.startsWith('!voterOnly')) {
+        const userVoted = await dclClient.isUserVoted(message.author.id)
+        if (!userVoted) {
+            message.reply(`you need to vote if you want to use this command. You can vote from here : https://dclist.net/bots/${client.user.id}/vote`)
+            return
+        }
+    }
+    // Do Some Fancy Stuff Here
+})
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+## AutoPoster Usage {#autoposter-usage}
+
+You need to send some report to the site so we can display your bot's guild, user, etc. count and track your growth rate for you.
+
+You can achive that with few lines of change. There is an example for sharded and standalone bots.
+
+### Stand-Alone Bot Setup {#stand-alone-bot-setup}
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="app.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: client,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="app.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: client,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Multi-Sharded Bot Setup {#multi-sharded-bot-setup}
+
+#### Shard Manager File {#shard-manager-file}
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="sharder.ts"
+import { ShardingManager } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const shardManager = new ShardingManager(...)
+
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+shardManager.spawn()
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="sharder.js"
+const { ShardingManager } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const shardManager = new ShardingManager(...)
+
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // !IMPORTANT!
+    client: shardManager,
+    enablePoster: true,
+    // !IMPORTANT!
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+shardManager.spawn()
+```
+
+</TabItem>
+</Tabs>
+````
+
+#### Shard Client File {#shard-client-file}
+
+````mdx-code-block
+<Tabs
+groupId="programming-language"
+defaultValue="ts"
+values={[
+{ label: 'TypeScript', value: 'ts' },
+{ label: 'JavaScript', value: 'js' },
+]}
+>
+<TabItem value="ts">
+
+```ts title="shard.ts"
+import { Client } from 'discord.js'
+import { GatewayClient } from '@dclist/sdk'
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // Don't pass client or enablePoster properties
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js title="shard.js"
+const { Client } = require('discord.js')
+const { GatewayClient } = require('@dclist/sdk')
+
+const client = new Client()
+const dclClient = new GatewayClient({
+    token: 'DCLIST_TOKEN',
+    // Don't pass client or enablePoster properties
+})
+
+client.on('ready', () => console.log("I'm ready sir o7"))
+
+client.login('DISCORD_TOKEN')
+```
+
+</TabItem>
+</Tabs>
+````
