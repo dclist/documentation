@@ -92,8 +92,14 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/dclist/docs/edit/master/docs/',
+          editUrl: ({locale, versionDocsDirPath, docPath}) => {
+            // Link to Crowdin for French docs
+            if (locale !== 'en') {
+              return `https://crowdin.com/project/dclist-docs/${locale}`;
+            }
+            // Link to Github for English docs
+            return `https://github.com/dclist/documentation/edit/master/${versionDocsDirPath}/${docPath}`;
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
